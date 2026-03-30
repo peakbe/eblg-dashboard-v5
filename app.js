@@ -366,6 +366,9 @@ function updateFidsUI(data) {
 
 function initMap() {
     map = L.map("map").setView([50.643, 5.443], 11);
+document.getElementById("reset-map").onclick = () => {
+    map.setView([50.643, 5.443], 11);
+};
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 18
