@@ -211,6 +211,25 @@ body {
     transform: scale(1.03);
     transition: 0.15s ease;
 }
+#detail-panel {
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    width: 260px;
+    padding: 14px;
+    z-index: 9999;
+    transition: 0.25s ease;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#detail-panel h3 {
+    margin-top: 0;
+    color: #8ac6ff;
+}
 
 /* ======================================================
    FIDS
