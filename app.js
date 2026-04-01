@@ -11,7 +11,8 @@ window.onload = () => {
     initHeatmapToggle(window.map);
     initHeatmapHistory(window.map);
     initClusterToggle(window.map);
-    initDebugPanel();
+    initDebugPanel(window.map);
     loadMetar();
     loadTaf();
     loadFids();
+};
