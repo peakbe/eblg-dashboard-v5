@@ -4,9 +4,9 @@
 
 import { ENDPOINTS } from "./config.js";
 import { fetchJSON, updateStatusPanel } from "./helpers.js";
-import { getRunwayFromWind, computeCrosswind } from "./runways.js";
+import { getRunwayFromWind } from "./runways.js";
 import { updateHeatmap } from "./sonometers.js";
-import { drawRunway, drawCorridor, RUNWAYS } from "./runways.js";
+import { drawRunway, drawCorridor } from "./runways.js";
 
 /**
  * Charge le METAR depuis le proxy.
@@ -18,7 +18,7 @@ export async function loadMetar() {
 }
 
 /**
- * Met à jour l’UI METAR + piste + sonomètres.
+ * Met à jour l’UI METAR + piste + heatmap.
  */
 export function updateMetarUI(data) {
     const el = document.getElementById("metar");
@@ -38,12 +38,12 @@ export function updateMetarUI(data) {
 
     const runway = getRunwayFromWind(windDir);
 
-    // Dessin piste + corridor
+    // 1) Dessin piste + corridor
     drawRunway(runway, window.runwayLayer);
     drawCorridor(runway, window.corridorLayer);
 
-    // Mise à jour heatmap APRÈS le runway
+    // 2) Mise à jour heatmap après stabilisation du rendu
     requestAnimationFrame(() => {
-        updateHeatmap(window.map);
+        updateHeatmap(window.map, windDir, windSpeed, runway);
     });
 }
